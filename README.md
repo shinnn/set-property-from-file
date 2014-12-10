@@ -78,7 +78,7 @@ setPropertyFromFile(target, 'fixtures/images/00.jpg', function(err, res) {
         '00': <Buffer ... > // new property
       }
     }
-  }, 'object['fixtures']['images']['00'] is added.');
+  });
 });
 ```
 
