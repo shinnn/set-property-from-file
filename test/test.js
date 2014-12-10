@@ -75,7 +75,7 @@ test('setPropertyFromFile()', function(t) {
 
   var option = {encoding: Boolean};
 
-  setPropertyFromFile({}, 'index.js', {encoding: Boolean}, function(err, res) {
+  setPropertyFromFile({}, 'index.js', option, function(err, res) {
     t.deepEqual(
       [err, res],
       [null, {index: true}],
@@ -101,7 +101,7 @@ test('setPropertyFromFile()', function(t) {
   });
 
   t.throws(
-    setPropertyFromFile.bind(null, null, noop),
+    setPropertyFromFile.bind(null, null, '.gitattributes', {}, noop),
     /TypeError.*must be an object/,
     'should throw a type error when the first argument is not an object.'
   );
