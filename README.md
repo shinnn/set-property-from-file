@@ -35,12 +35,12 @@ npm install set-property-from-file
 ## API
 
 ```javascript
-var setPropetyFromFile = require('set-property-from-file');
+var setPropertyFromFile = require('set-property-from-file');
 ```
 
-### setPropetyFromFile(*target*, *filePath* [, *options*], *callback*)
+### setPropertyFromFile(*target*, *filePath* [, *options*], *callback*)
 
-*target*: `object`  
+*target*: `Object`  
 *filePath*: `String` (a relative file path)  
 *options*: `Object` or `String` (file encoding)  
 *callback*: `Function`
@@ -70,7 +70,7 @@ setPropertyFromFile(target, 'fixtures/images/00.jpg', function(err, res) {
     throw err;
   }
   
-  // Adds ['fixtures']['images']['00'] property to the target object.
+  // Adds fixtures.images['00'] property to the target object.
   assert.deepEqual(res, {
     fixtures: {
       foo: 'bar' // target's default property
