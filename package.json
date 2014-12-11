@@ -1,6 +1,6 @@
 {
   "name": "set-property-from-file",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Set object property using a file path and contents",
   "repository": "shinnn/set-property-from-file",
   "author": {
