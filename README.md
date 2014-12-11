@@ -24,9 +24,9 @@ setPropertyFromFile({bar: true}, 'foo.txt', 'utf8', function(err, res) {
 
 ## Installation
 
-[![NPM version](https://badge.fury.io/js/set-property-from-file.svg)](https://www.npmjs.org/package/set-property-from-file)
+[![NPM version](https://badge.fury.io/js/set-property-from-file.svg)](https://www.npmjs.com/package/set-property-from-file)
 
-[Use npm.](https://www.npmjs.org/doc/cli/npm-install.html)
+[Use npm.](https://docs.npmjs.com/cli/install)
 
 ```
 npm install set-property-from-file
