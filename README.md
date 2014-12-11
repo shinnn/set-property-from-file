@@ -157,12 +157,12 @@ setPropertyFromFile({}, 'index.js', {ext: true}, function(err, res) {
 });
 ```
 
-##### options.encoding
+##### options.processor
 
-Type: `String` or `Function`  
+Type: `Function`  
 Default: `undefined`
 
-If you set this option to a function, it will be used to process file contents before setting the property.
+Specify a function to process file contents before setting the properties.
 
 ```javascript
 // foo.txt (abcde)

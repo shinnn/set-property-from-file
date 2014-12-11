@@ -5,7 +5,7 @@ var setPropertyFromFile = require('../');
 var test = require('tape');
 
 test('setPropertyFromFile()', function(t) {
-  t.plan(15);
+  t.plan(16);
 
   var obj = {};
   setPropertyFromFile(obj, '.gitattributes', 'utf8', function(err, res) {
@@ -73,15 +73,15 @@ test('setPropertyFromFile()', function(t) {
     );
   });
 
-  var option = {encoding: Boolean};
+  var option = {processor: Boolean};
 
   setPropertyFromFile({}, 'index.js', option, function(err, res) {
     t.deepEqual(
       [err, res],
       [null, {index: true}],
-      'should process file content with a function using `encoding` option.'
+      'should process file content with a function using `processor` option.'
     );
-    t.deepEqual(option, {encoding: Boolean}, 'should not modify option object.');
+    t.deepEqual(option, {processor: Boolean}, 'should not modify option object.');
   });
 
   setPropertyFromFile({}, 'test/fixtures/a.txt', {ext: true}, function(err, res) {
@@ -92,7 +92,7 @@ test('setPropertyFromFile()', function(t) {
     );
   });
 
-  setPropertyFromFile({}, 'node_modules', function(err) {
+  setPropertyFromFile({}, 'node_modules', {processor: null}, function(err) {
     t.equal(
       err.code,
       'EISDIR',
@@ -113,7 +113,13 @@ test('setPropertyFromFile()', function(t) {
   );
 
   t.throws(
-    setPropertyFromFile.bind(null, {}, '.gitattributes', {}),
+    setPropertyFromFile.bind(null, {}, '.gitattributes', {processor: true}, noop),
+    /TypeError.*must be a function/,
+    'should throw a type error when the `processor` option is not a function.'
+  );
+
+  t.throws(
+    setPropertyFromFile.bind(null, {}, '.gitattributes', {}, [noop]),
     /TypeError.*must be a function/,
     'should throw a type error when the last argument is not a function.'
   );

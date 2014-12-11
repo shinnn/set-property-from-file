@@ -10,7 +10,6 @@ var fs = require('graceful-fs');
 var isRelativePath = require('is-relative');
 var objectPath = require('object-path');
 var stripBom = require('strip-bom');
-var xtend = require('xtend');
 
 module.exports = function setPropertyFromFile(target, filePath, options, cb) {
   if (!target || typeof target !== 'object') {
@@ -34,11 +33,11 @@ module.exports = function setPropertyFromFile(target, filePath, options, cb) {
     throw new Error('Second argument must be a relative path.');
   }
 
-  var encoder;
-
-  if (typeof options.encoding === 'function') {
-    encoder = options.encoding;
-    options = xtend(options, {encoding: null});
+  if (options.processor && typeof options.processor !== 'function') {
+    throw new TypeError(
+      options.processor +
+      ' is not a function. processor option must be a function.'
+    );
   }
 
   if (typeof cb !== 'function') {
@@ -69,8 +68,8 @@ module.exports = function setPropertyFromFile(target, filePath, options, cb) {
 
     result = stripBom(result);
 
-    if (encoder) {
-      result = encoder(result);
+    if (options.processor) {
+      result = options.processor(result);
     }
 
     objectPath.set(target, props, result);
